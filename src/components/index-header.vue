@@ -1,27 +1,49 @@
 <template>
     <div class="_cover-top">
+
+
+       <div class="center">
+
+            {{menu_active.text}}
+
+            <span class="parentheses" 
+                  v-show='chatCount' 
+                  v-text="index_nav[0].hint.count">                      
+            </span>
+
+        </div>
+        
+
         <div class="other">
-            <span class="iconfont icon-tips-jia" v-show="$route.path==='/chat'" v-touch:tap="tap"></span>
-            <span class="iconfont icon-tips-add-friend" v-show="$route.path==='/contact'" v-link='{path:"/contact/add-friends"}'></span>
+
+            <span class="iconfont icon-tips-jia" 
+                  v-show="$route.path==='/chat'" 
+                  v-touch:tap="tap">                      
+            </span>
+
+            <span class="iconfont icon-tips-add-friend" 
+                  v-show="$route.path==='/contact'" 
+                  v-link='{path:"/contact/add-friends"}'>                    
+            </span>
+
             <ul class="tips-menu" :class="tips_isOpen?'tips-open':'tips-close'">
                 <li v-for="item in menuArr" v-link="item._link">
                     <span class="iconfont" :class="item.iconClass"></span>
                     <div v-text="item.text"></div>
                 </li>
             </ul>
+
             <div class="tips-masker" v-show="tips_isOpen"></div>
+
         </div>
-        <div class="center">
-            {{menu_active.text}}
-            <span class="parentheses" v-show='chatCount' v-text="index_nav[0].hint.count"></span>
-        </div>
+
+     
     </div>
 </template>
+
 <script>
-import {
-    menu_active,
-    index_nav
-} from 'getters'
+import {menu_active, index_nav } from 'getters'
+
 export default {
     vuex: {
         getters: {

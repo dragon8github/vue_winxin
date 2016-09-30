@@ -1,31 +1,6 @@
+
 let state = {
-    wechat_list: [/*{
-        "base": {
-            "id": 0,
-            "name": "",
-            "wxid": "",
-            "qq": "",
-            "email": "",
-            "type": "firends",
-            "iconSrc": "",
-            "qrCode": "",
-            "signature": ""
-        },
-        "chatBaseModel": {
-            "newsUnreadCount": null,
-            "endTimeStr": null,
-            "endChatAuth": "",
-            "endChatTxt": "",
-        },
-        "chatConfigModel": {
-            "chatBackground": null, //背景
-            "groupNotice": null, //群公告
-            "isStick": null, //置顶
-            "newsMute": true, //消息免打扰
-            "contactsSave": null,
-            "showGroupNickname": null //显示群聊天昵称
-        }
-    }*/],
+    wechat_list: [],
     //base
     chat_base: {
         "id": 1,
@@ -68,9 +43,20 @@ let state = {
         "showGroupNickname": true, //显示群聊天昵称
     }
 }
+
+
 const mutations = {
+    /* 往wechat_list 里面塞入信息 */
     ["SET_MENU_WECHAT_LIST"](state, list) {
         state.wechat_list = list
+    },
+    /* 设置已读和未读的数量 */
+    ["SET_NEWS_STATE"](state,index,val){
+        state.wechat_list[index].chatBaseModel.newsUnreadCount = val
+    },
+    /* 删除信息 */ 
+    ["DELETE_NEWS"](state,index){
+        state.wechat_list.splice(index,1);
     },
     ["CHAT"](state, {
         base,
@@ -86,14 +72,7 @@ const mutations = {
         state.dialogue_bar = chatDialogueBarModel;
         state.chat_member = chatMemberModel;
         state.chat_config = chatConfigModel;
-    },
-    ["SET_NEWS_STATE"](state,index,val){
-        state.wechat_list[index].chatBaseModel.newsUnreadCount = val
-    },
-    ["DELETE_NEWS"](state,index){
-        state.wechat_list.splice(index,1);
     }
-
 }
 
 export default {

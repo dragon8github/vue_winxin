@@ -1,11 +1,23 @@
+/**
+  * how: 2016.9.30 李钊鸿 v1
+  * problem：对 ({ base }) 这种参数格式表示不理解。为什么和文档 (state, getters) 不一致？
+  *          文档地址：http://vuex.vuejs.org/en/getters.html
+  * answer: 原来{ base } == state.base，那就不难理解了。
+            为了可读性，建议还是使用 state 和 state.base 这种书写格式
+ **/
+
 //base
-export const index_nav = ({base}) => base.index_nav
+export const index_nav =  ( state ) => state.base.index_nav
 export const menu_active = ({ base }) => base.menu_active
 export const backPath = ({ base }) => base.backPath
 
 
 //chat
-export const wechat_list = ({ chat }) => chat.wechat_list
+export const wechat_list = ({ chat }) => {
+
+	console.log("xxxxxxxxxxx",chat.wechat_list,chat)
+	return chat.wechat_list
+}
 export const chat_base = ({ chat }) => chat.chat_base
 export const dialogue_type = ({ chat }) => chat.dialogue_type
 export const dialogue = ({ chat }) => chat.dialogue

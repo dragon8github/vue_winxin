@@ -1,5 +1,4 @@
 
-
 let state = {
     backPath: '',
     index_nav: [{
@@ -13,6 +12,8 @@ let state = {
     }],
     menu_active: { text: "", index: 0 },
 }
+
+
 const mutations = {
     ["SET_MENU"](state, index_nav) {
         state.index_nav = index_nav;

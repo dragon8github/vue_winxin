@@ -1,5 +1,8 @@
 import store from 'store'
+
+
 export default function(router) {
+
     //个人资料
     const personInfo = {
             component: resolve => {
@@ -14,6 +17,7 @@ export default function(router) {
                 }
             }
     }
+
     //个人相册
     const albums = {
         component: resolve => {
@@ -59,6 +63,10 @@ export default function(router) {
                 }
             }
     }
+
+    router.redirect({
+        '/': '/chat'
+    })
 
     //map
     router.map({
@@ -133,10 +141,8 @@ export default function(router) {
                 'public': {
                     component: resolve => {
                         require(['./views/contact/public.vue'], resolve)
-
                     }
                 }
-
             }
         },
         '/find': {
@@ -174,12 +180,12 @@ export default function(router) {
         }
     })
 
-    router.redirect({
-        '/': '/chat'
-    })
 
+    
     router.afterEach(function({ from, to }) {
+        //获取来路
         let fromPath = from.path || '/';
+        //获取跳转页
         let toPath = to.path;
         let toPath_end = toPath.lastIndexOf('/');
         let backPath = toPath.slice(0, toPath_end);

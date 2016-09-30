@@ -11,12 +11,16 @@ import routerMap from './route-config.js'
 import filters from './filters'
 
 
-Vue.config.devtools = true;
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.use(VueTouch)
 Vue.use(VueAnimatedList)
+
+
+Vue.config.debug = true;
+Vue.config.devtools = true;
+
 
 const router = new VueRouter({
     hashbang:true,
