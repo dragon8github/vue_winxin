@@ -7,10 +7,11 @@
             </div>
         </header>
 
+
         <section class="app-content" style="display:none" v-show="appload">
-            <!-- index router -->
             <router-view keep-alive></router-view>
         </section>
+
 
         <footer class="app-footer _line-fine" style="display:none" v-show="appload">
             <div class="_effect " :class="{'_effect--50':decline}">
@@ -19,8 +20,10 @@
         </footer>   
 
 
+
         <section class="welcome" v-show="welcome" style="display:none" transition="welcome">
         </section>
+
 
 
         <section class="mobile-tips" style="dislay:none;" v-show="isnotMobile">
@@ -33,6 +36,8 @@
                 <button class="weui_btn weui_btn_mini weui_btn_primary" v-touch:tap='isnotMobile = false'>关闭</button>
             </div>
         </section>
+
+
     </div>
 </template>
 <script>
@@ -67,10 +72,12 @@ export default {
         }
     },
     created () {    
-        //如果是第一次打开，则显示月球welcome界面，两秒之后隐藏
+        //如果是第一次打开
         if (this.$route.matched.length === 1) 
         {
+            //则显示月球welcome界面
             this.welcome = true;   
+            //两秒之后
             setTimeout(() => {
                  //隐藏月球欢迎界面
                  this.welcome = false;
@@ -82,8 +89,10 @@ export default {
                  }
             }, 1500)
         }        
+        //否则
         else
-        {
+        {   
+            //直接显示主界面
             this.appload = true;
         } 
     },

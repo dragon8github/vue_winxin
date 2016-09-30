@@ -20,12 +20,6 @@ export default function(router) {
             require(['./views/find/albums-friends.vue'], resolve)
         },
         subRoutes: {
-            // //预览
-            // 'preview': {
-            //     component: resolve => {
-            //         require(['./views/find/albums-friends-preview.vue'], resolve)
-            //     }
-            // },
             //个人资料
             'person-info': personInfo
         }

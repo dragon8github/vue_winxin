@@ -6,7 +6,6 @@ import VueTouch from 'vue-touch'
 import VueAnimatedList from 'vue-animated-list'
 import zepto from 'webpack-zepto'
 import fastclick from 'fastclick'
-
 import store from 'store'
 import routerMap from './route-config.js'
 import filters from './filters'

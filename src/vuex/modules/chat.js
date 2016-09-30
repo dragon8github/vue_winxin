@@ -1,10 +1,3 @@
-import {
-    SET_MENU_WECHAT_LIST,
-    CHAT,
-    SET_NEWS_STATE,
-    DELETE_NEWS
-} from '../mutation-types'
-
 let state = {
     wechat_list: [/*{
         "base": {
@@ -76,10 +69,10 @@ let state = {
     }
 }
 const mutations = {
-    [SET_MENU_WECHAT_LIST](state, list) {
+    ["SET_MENU_WECHAT_LIST"](state, list) {
         state.wechat_list = list
     },
-    [CHAT](state, {
+    ["CHAT"](state, {
         base,
         // chatBaseModel,
         chatDialogueModel,
@@ -94,10 +87,10 @@ const mutations = {
         state.chat_member = chatMemberModel;
         state.chat_config = chatConfigModel;
     },
-    [SET_NEWS_STATE](state,index,val){
+    ["SET_NEWS_STATE"](state,index,val){
         state.wechat_list[index].chatBaseModel.newsUnreadCount = val
     },
-    [DELETE_NEWS](state,index){
+    ["DELETE_NEWS"](state,index){
         state.wechat_list.splice(index,1);
     }
 

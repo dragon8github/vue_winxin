@@ -44,16 +44,3 @@ export const set_iframe_url = ({ dispatch }, urlObj, fn) => {
     dispatch('SET_IFRAME_URL', urlObj)
     !!fn && fn()
 }
-
-
-
-//优雅结构,可读性略差
-// export const deleteTodo = makeAction('DELETE_TODO')
-// export const toggleTodo = makeAction('TOGGLE_TODO')
-// export const editTodo = makeAction('EDIT_TODO')
-// export const toggleAll = makeAction('TOGGLE_ALL')
-// export const clearCompleted = makeAction('CLEAR_COMPLETED')
-
-// function makeAction (type) {
-//   return ({ dispatch }, ...args) => dispatch(type, ...args)
-// }
