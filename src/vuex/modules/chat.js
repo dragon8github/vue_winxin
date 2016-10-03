@@ -45,6 +45,8 @@ let state = {
 }
 
 
+
+
 const mutations = {
     /* 往wechat_list 里面塞入信息 */
     ["SET_MENU_WECHAT_LIST"](state, list) {
@@ -74,6 +76,8 @@ const mutations = {
         state.chat_config = chatConfigModel;
     }
 }
+
+
 
 export default {
     state,

@@ -181,14 +181,23 @@ export default function(router) {
     })
 
 
-    
+    /**
+     * 每次路由跳转之后会执行的事件
+     * 通过这个我们可以实现“返回”功能,这也是我之前一直没找到的方法
+     * 这里解释一下为什么不直接使用from。而使用backPath：
+     * 正常情况下from确实可以实现“返回”；
+     * 但是,一旦将场景假设成第二层和第三层之间切换时，
+     * 如果还使用from的话，就会来回跳转二和三层，回不了第一层，所以正确的思路应该是
+     * 每次获取上一层路由,当然这和路由规则也密不可分
+     */
     router.afterEach(function({ from, to }) {
         //获取来路
         let fromPath = from.path || '/';
         //获取跳转页
         let toPath = to.path;
-        let toPath_end = toPath.lastIndexOf('/');
-        let backPath = toPath.slice(0, toPath_end);
+        //获取上一层(有可能为空)
+        let backPath = toPath.slice(0, toPath.lastIndexOf('/'));
+        //调用Vuex
         store.dispatch('BACK_PATH', backPath)
     })
 

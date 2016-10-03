@@ -40,6 +40,7 @@ export default {
 
 
 <style scoped>
+
 nav {
     display: flex;
     width: 100%;

@@ -5,6 +5,8 @@ let state = {
     },
     contact_friends: []
 }
+
+
 const mutations = {
     ["PERSON_INFO"](state, infoObj) {
         state.person_info = infoObj
@@ -16,6 +18,8 @@ const mutations = {
 
     }
 }
+
+
 
 export default {
     state,

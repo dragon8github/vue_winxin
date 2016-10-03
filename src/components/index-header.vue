@@ -1,19 +1,7 @@
 <template>
     <div class="_cover-top">
 
-
-       <div class="center">
-
-            {{menu_active.text}}
-
-            <span class="parentheses" 
-                  v-show='chatCount' 
-                  v-text="index_nav[0].hint.count">                      
-            </span>
-
-        </div>
-        
-
+        <!-- 右侧 “+” 图标按钮 -->
         <div class="other">
 
             <span class="iconfont icon-tips-jia" 
@@ -34,6 +22,21 @@
             </ul>
 
             <div class="tips-masker" v-show="tips_isOpen"></div>
+
+        </div>
+
+
+        <!-- 头部中间  -->
+       <div class="center">
+
+            <!-- 标题 -->
+            {{menu_active.text}}
+
+            <!-- 未读信息数量 -->
+            <span class="parentheses" 
+                  v-show='chatCount' 
+                  v-text="index_nav[0].hint.count">                      
+            </span>
 
         </div>
 
@@ -86,7 +89,7 @@ export default {
         }
     },
     computed:{
-        chatCount(){
+        chatCount () {
             return  this.menu_active.text==="微信" && this.index_nav[0].hint.count > 0
         }
     },
