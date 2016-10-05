@@ -77,7 +77,6 @@
     <router-view transition="cover" ></router-view>
 </template>
 <script>
-// import {} from 'getters'
 import {
     set_iframe_url,
     set_menu_active

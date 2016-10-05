@@ -38,7 +38,12 @@ module.exports = {
             test: /\.js$/,
             loader: 'babel',
             include: projectRoot,
-            exclude: /node_modules/
+            exclude: /node_modules/,
+            query:{
+              "presets": ["es2015", "stage-2"],
+              "plugins": ["transform-runtime"],
+              "comments": false
+            } 
         }, {
             test: /\.json$/,
             loader: 'json'

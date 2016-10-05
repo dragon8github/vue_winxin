@@ -19,9 +19,6 @@
     </div>
 </template>
 <script>
-// import {} from 'getters'
-// import {} from 'actions'
-
 import topHandle from 'topHandle'
 
 export default {
