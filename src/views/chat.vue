@@ -1,6 +1,11 @@
 <template>
+
     <div class="_full_inner _scroll _effect component-chat" :class="{'_effect--30':decline}">
+
+        <!-- 搜索框 -->
         <search-bar></search-bar>
+
+        <!-- 聊天列表 -->
         <ul class="wechat-list">
             <li class="item _line-fine" v-for="item in wechat_list" transition="chat-item">
                 
@@ -11,6 +16,7 @@
                     v-touch:swipeleft="info_swipeleft($index)" 
                     v-touch-options:swipe="{ direction: 'horizontal' }">
 
+                    <!-- 头像 -->
                     <div class="ico-box">
                         <i :class="item.chatConfigModel | f_news 'nclass'" 
                             v-text="item.chatBaseModel | f_news 'ntext'" 
@@ -21,12 +27,16 @@
                         </div>
                     </div>
 
+                    <!-- 详情 -->
                     <div class="desc">
-                        <div class="desc-time" v-text="item.chatBaseModel.endTimeStr | fmtDate 'hh:ss'">                            
-                        </div>
 
+                        <!-- 时间 -->
+                        <div class="desc-time" v-text="item.chatBaseModel.endTimeStr | fmtDate 'hh:ss'"></div>
+
+                        <!-- 标题:好友名、微信群名 -->
                         <div class="desc-title" v-text="item.base.name"></div>
 
+                        <!-- 短信内容 -->
                         <div class="desc-message">
                             <div class="desc-mute iconfont icon-mute" :title="item.chatConfigModel.newsMute | json" v-show="item.chatConfigModel.newsMute"></div>
                             <span :title="item.base.type" v-show="item.base.type==='friends'" v-text="item.chatBaseModel.endChatAuth+':'"></span>
@@ -35,6 +45,7 @@
                     </div>
                 </div>
 
+                <!-- 左滑菜单 -->
                 <div class="handle">
                     <div class="handle-unread" v-touch:tap='increase_newsState($index,1)' v-show="item.chatBaseModel.newsUnreadCount==0">标为未读</div>
                     <div class="handle-unread" v-touch:tap='increase_newsState($index,0)' v-show="item.chatBaseModel.newsUnreadCount>0">标为已读</div>
@@ -49,7 +60,10 @@
 </template>
 
 <script>
+
 import { wechat_list } from 'getters'
+import searchBar from 'components/search-bar.vue'
+
 import {
     get_menu_wechat_list,
     set_menu_active,
@@ -58,7 +72,8 @@ import {
     set_news_state,
     delete_news
 } from '../vuex/actions'
-import searchBar from 'components/search-bar.vue'
+
+
 
 export default {
     vuex: {
@@ -116,14 +131,11 @@ export default {
                 this.isTouchSwipe = false
             }
         },
-        computed_unRead_count() {
+        computed_unRead_count () {
             //计算未读数量
             let sum = 0;
             console.log(this.wechat_list)
-            this.wechat_list.forEach(({
-                chatBaseModel,
-                chatConfigModel
-            }, index) => {
+            this.wechat_list.forEach(({chatBaseModel, chatConfigModel }, index) => {
                 if (!chatConfigModel.newsMute) {
                     let count = chatBaseModel.newsUnreadCount
                     sum += count
@@ -164,7 +176,7 @@ export default {
     components: {
         searchBar
     },
-    created() {
+    created () {
         this.get_menu_wechat_list(() => {
             this.computed_unRead_count()
         })

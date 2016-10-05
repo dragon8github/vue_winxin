@@ -15,18 +15,23 @@ let state = {
 
 
 const mutations = {
-    ["SET_MENU"](state, index_nav) {
+    //更新首页导航
+    SET_MENU (state, index_nav) {
         state.index_nav = index_nav;
     },
-    ["SET_MENU_ACTIVE"](state, _index) {
-        //底部导航激活
+
+     //底部导航激活
+    SET_MENU_ACTIVE (state, _index) {
         state.menu_active = state.index_nav[_index]
     },
-    ["BACK_PATH"](state, _path) {
-        //设置返回按钮跳转路径,router.afterEach设置
+
+    //设置返回按钮跳转路径,router.afterEach设置
+    BACK_PATH (state, _path) {
         state.backPath = { path: _path };
     },
-    ["SET_CHAT_COUNT"](state, count) {
+
+    //设置聊天总数
+    SET_CHAT_COUNT (state, count) {
         state.index_nav[0].hint.count = count;
     }
 }

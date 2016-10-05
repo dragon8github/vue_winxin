@@ -1,8 +1,6 @@
 import store from 'store'
 
-
 export default function(router) {
-
     //个人资料
     const personInfo = {
             component: resolve => {
@@ -29,46 +27,48 @@ export default function(router) {
         }
     }
     
-    //相互引用
+    //相互引用 (不知道作用)
     personInfo.albums = albums
 
     //对话框
     const dialogue = {
-            component: resolve => {
-                require(['./views/chat/dialogue.vue'], resolve)
+        component : resolve => {
+            require(['./views/chat/dialogue.vue'], resolve)
+        },  
+        subRoutes: {
+            //聊天详情
+            'chat-detail': {
+                component: resolve => {
+                    require(['./views/chat/chat-detail.vue'], resolve)
+                },
+                subRoutes: {
+                    'person-info': personInfo
+                }       
             },
-            subRoutes: {
-                //聊天详情
-                'chat-detail': {
-                    component: resolve => {
-                        require(['./views/chat/chat-detail.vue'], resolve)
-                    },
-                    subRoutes: {
-                        'person-info': personInfo
-                    }
+            //群聊天信息
+            'chat-info': {
+                component: resolve => {
+                    require(['./views/chat/chat-info.vue'], resolve)
                 },
-                //群聊天信息
-                'chat-info': {
-                    component: resolve => {
-                        require(['./views/chat/chat-info.vue'], resolve)
-                    },
-                    subRoutes: {
-                        'person-info': personInfo
-                    }
-                },
-                'link': {
-                    component: resolve => {
-                        require(['./components/iframe.vue'], resolve)
-                    }
+                subRoutes: {
+                    'person-info': personInfo
+                }
+            },
+            // 小游戏 + 广告
+            'link': {
+                component: resolve => {
+                    require(['./components/iframe.vue'], resolve)
                 }
             }
+        }
     }
 
+    //重定向 (也可以理解为默认打开的路由地址)
     router.redirect({
         '/': '/chat'
     })
 
-    //map
+    //核心路由
     router.map({
         '/chat': {
             component: resolve => {
@@ -191,7 +191,7 @@ export default function(router) {
      * 每次获取上一层路由,当然这和路由规则也密不可分
      */
     router.afterEach(function({ from, to }) {
-        //获取来路
+        //获取来路(未使用)
         let fromPath = from.path || '/';
         //获取跳转页
         let toPath = to.path;

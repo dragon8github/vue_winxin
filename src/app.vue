@@ -23,12 +23,12 @@
         </footer>   
 
 
-
+        <!-- 欢迎 -->
         <section class="welcome" v-show="welcome" style="display:none" transition="welcome">
         </section>
 
 
-
+        <!-- 温馨提示 -->
         <section class="mobile-tips" style="dislay:none;" v-show="isnotMobile">
             <div class="mobile-tips-inner">
                 <div class="mobile-model"> 
@@ -44,6 +44,8 @@
         </section>
     </div>
 </template>
+
+
 <script>
 import store from 'store'
 import indexHeader from 'components/index-header.vue'

@@ -1,31 +1,4 @@
 <template>
-    <!--
-左侧
-props
-    backText
-中间
-props
-    curText
-    decline
-或者
-slot
-<p
-slot='center'>
-    <span class="top-title__text _ellipsis" v-text='topModel.curText'></span>
-    <span class="top-title__num" v-text="'(320)'"></span>
-    <span class="iconfont icon-mute" v-show='topModel.isMute'></span>
-</p>
-
-右侧
-props
-    nextPath
-    nextIcon
-或者
-slot
-    <div v-link="{path:'',append:true}">
-        <span class="iconfont icon-chat-person"></span>
-    </div>
--->
     <div class="_cover-top">
         <!-- left -->
         <div class="top-back">
@@ -50,16 +23,13 @@ slot
         </div>
     </div>
 </template>
+
 <script>
-import {
-    backPath
-} from 'getters'
+
+import {backPath } from 'getters'
+
 export default {
     props: {
-        //返回路径
-        // 'backPath': {
-        //     type: Object
-        // },
         //返回文本
         'backText': {
             type: String,
@@ -86,13 +56,7 @@ export default {
         getters: {
             backPath
         }
-    },
-    data() {
-        return {
-
-        }
-    },
-    methods: {}
+    }
 }
 </script>
 <style scoped>

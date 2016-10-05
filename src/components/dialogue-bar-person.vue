@@ -1,3 +1,4 @@
+<!-- 模仿语音组件 -->
 <template>
     <div class="component-dialogue-bar-person">
         <span class="iconfont icon-dialogue-jianpan" v-show="way==='say'" v-touch:tap="switch_way('txt')"></span>

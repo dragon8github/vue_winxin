@@ -3,42 +3,37 @@
 
         <!-- 右侧 “+” 图标按钮 -->
         <div class="other">
-
-            <span class="iconfont icon-tips-jia" 
-                  v-show="$route.path==='/chat'" 
-                  v-touch:tap="tap">                      
+            <!-- 如果当前页面是/chat，则显示 + 图标按钮    -->
+            <span class="iconfont icon-tips-jia" v-show="$route.path==='/chat'" v-touch:tap="tap">
+                <!-- 气泡对话框 css值得一学 -->
+                <div class="tips-masker" v-show="tips_isOpen"></div>
+                <!-- 气泡列表 -->
+                <ul class="tips-menu" :class="tips_isOpen?'tips-open':'tips-close'">
+                    <li v-for="item in menuArr" v-link="item._link">
+                        <span class="iconfont" :class="item.iconClass"></span>
+                        <div v-text="item.text"></div>
+                    </li>
+                </ul>                   
             </span>
 
+            <!-- 如果当前页面是/contact，则显示 + 图标按钮 -->
             <span class="iconfont icon-tips-add-friend" 
                   v-show="$route.path==='/contact'" 
                   v-link='{path:"/contact/add-friends"}'>                    
             </span>
-
-            <ul class="tips-menu" :class="tips_isOpen?'tips-open':'tips-close'">
-                <li v-for="item in menuArr" v-link="item._link">
-                    <span class="iconfont" :class="item.iconClass"></span>
-                    <div v-text="item.text"></div>
-                </li>
-            </ul>
-
-            <div class="tips-masker" v-show="tips_isOpen"></div>
-
         </div>
 
 
         <!-- 头部中间  -->
        <div class="center">
-
             <!-- 标题 -->
             {{menu_active.text}}
-
             <!-- 未读信息数量 -->
             <span class="parentheses" 
                   v-show='chatCount' 
                   v-text="index_nav[0].hint.count">                      
             </span>
-
-        </div>
+       </div>
 
      
     </div>
@@ -59,7 +54,7 @@ export default {
             tips_isOpen: false,
             menuArr: [{
                 _link: {
-                    path: 'group-chat', //create-group-chat
+                    path: 'group-chat',
                     append:true
                 },
                 text: '发起群聊',
@@ -90,11 +85,16 @@ export default {
     },
     computed:{
         chatCount () {
+            /* 
+               通过vuex的state数据来判断当前是否首页，可能是因为无法使用$route.path吧
+               但为什么template就可以使用呢奇怪了
+             */
             return  this.menu_active.text==="微信" && this.index_nav[0].hint.count > 0
         }
     },
     created() {
         var self = this;
+        /* 当点击空白处时，自动隐藏右上角的气泡,但 touchend 这个事件只能在Chrome Ctrl+shift+M 模式下才可以使用 */
         $('body').on('touchend', function() {
             setTimeout(() => {
                 self.tips_isOpen = false;

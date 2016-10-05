@@ -13,11 +13,7 @@ export const backPath = ({ base }) => base.backPath
 
 
 //chat
-export const wechat_list = ({ chat }) => {
-
-	console.log("xxxxxxxxxxx",chat.wechat_list,chat)
-	return chat.wechat_list
-}
+export const wechat_list = ({ chat }) => chat.wechat_list
 export const chat_base = ({ chat }) => chat.chat_base
 export const dialogue_type = ({ chat }) => chat.dialogue_type
 export const dialogue = ({ chat }) => chat.dialogue

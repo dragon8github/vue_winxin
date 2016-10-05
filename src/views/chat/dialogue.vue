@@ -2,13 +2,19 @@
     <!--对话框-->
     <div class="_full_router component-chat-dialogue">
         <div class="_full_inner">
-            <top-handle :back-text='"微信"' :cur-text='topModel.curText' :next-path='topModel.nextPath' :next-icon='topModel.nextIcon'>
+            <top-handle :back-text='"微信"' 
+                        :cur-text='topModel.curText' 
+                        :next-path='topModel.nextPath' 
+                        :next-icon='topModel.nextIcon'>
+
                 <p class="_effect" slot='center' :class="{'_effect--50':decline}">
                     <span class="top-title__text _ellipsis" v-text='topModel.curText'></span>
                     <span class="top-title__num parentheses" v-text="chat_member.length" v-show="dialogue_type==='group'"></span>
                     <span class="iconfont icon-mute" v-show='topModel.isMute'></span>
                 </p>
+                
             </top-handle>
+
             <div class="_cover-content _effect" :class="{'_effect--30':decline}">
                 <section class="dialogue-section">
                     <div class="dialogue-section-inner">
@@ -29,7 +35,9 @@
         <router-view transition="cover"></router-view>
     </div>
 </template>
+
 <script>
+
 import {
     chat_base,
     dialogue_type,
@@ -38,9 +46,12 @@ import {
     chat_member,
     chat_config
 } from 'getters'
+
+
 import topHandle from 'topHandle'
 import dialogueBar from 'components/dialogue-bar.vue'
 import dialogueBarPerson from 'components/dialogue-bar-person.vue'
+
 export default {
     vuex: {
         getters: {
@@ -50,17 +61,10 @@ export default {
             dialogue_bar,
             chat_member,
             chat_config
-        },
-        actions: {
-
         }
     },
     route: {
-        activate({
-            from,
-            to,
-            next
-        }) {
+        activate ({from, to, next }) {
             //icon
             this.topModel.nextIcon = 'icon-chat-' + this.dialogue_type
             this.topModel.curText = this.chat_base.name
@@ -84,11 +88,7 @@ export default {
             this.$parent.$emit('route-pipe', true)
             next()
         },
-        deactivate({
-            from,
-            to,
-            next
-        }) {
+        deactivate ({from, to, next }) {
             this.$parent.$emit('route-pipe', false)
             next()
         }
@@ -107,23 +107,16 @@ export default {
             }
         }
     },
-    create() {
-
-
-    },
-    methods: {},
     events: {
         'route-pipe' (_decline) {
             this.decline = _decline
         }
-
     },
     components: {
         topHandle,
         dialogueBar,
         dialogueBarPerson
-    },
-    created() {},
+    }
 }
 </script>
 <style scoped>
