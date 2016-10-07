@@ -297,7 +297,11 @@ body,
 }
 
 
-/* 子路由被激活后应用的样式 */
+/* 子路由被激活后应用的样式 
+   通过事件开关来操控._effect模仿甚至代替transition、enter、leave的作用
+   以下._effect的样式是事件true时的效果（向左移动），如果为false,会呈现反效果（向右移动）
+*/
+
 
 ._effect {
     opacity: 1;
