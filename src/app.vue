@@ -11,6 +11,7 @@
         
         <!-- 身体是根据Vue-router路由 route-config.js 来切换内容 -->
         <section class="app-content" style="display:none" v-show="appload">
+            <!-- 这里的路由主要由底部导航栏 index-nav 操作 -->
             <router-view keep-alive></router-view>
         </section>
 
@@ -50,7 +51,6 @@
 import store from 'store'
 import indexHeader from 'components/index-header.vue'
 import indexNav from 'components/index-nav.vue'
-
 require('assets/css/common.scss')
 require('assets/css/base.scss')
 

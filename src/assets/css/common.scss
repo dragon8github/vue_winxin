@@ -191,25 +191,28 @@ body,
 /*weui end*/
 
 
+
+
 /*
-    router-view -> transition="cover"
-    cover开头的 是router-view过渡切换是公用的样式
+    路由过渡切换的样式
     _cover-* 是会被cover 影响的元素
 */
 
+
+
+/* 这里我不明白为什么注释掉opacity就会跳转不动 */
 .cover-transition {
     opacity: 1;
-    transition: .35s opacity ease;
+    transition: .35s all ease;
 }
 
 .cover-enter,
-.cover-leave {
-    opacity: .98;
+.cover-leave { 
+    opacity: .99;
 }
 
 
-/*initial route transition 1*/
-
+/* 头部默认样式、动画准备 */
 ._cover-top {
     position: relative;
     z-index: 2;
@@ -225,23 +228,19 @@ body,
     transition: .22s all ease;
 }
 
-
-/*initial route transition 2*/
-
+/* 标题默认样式、动画准备  */
 ._cover-top .top-title {
-    transition: .2s all ease;
+    transition: .3s all ease;
 }
 
-
-/*initial route transition 3*/
-
+/* 身体默认样式、动画准备  */
 ._cover-content {
     position: relative;
     width: 100%;
     height: 100%;
     overflow: hidden;
     z-index: 1;
-    transition: .2s all ease-in-out;
+    transition: .3s all ease-in-out; 
     opacity: 1;
     transform: translate3d(0%, 0, 0);
     height: calc(100% - 45px);
@@ -250,53 +249,44 @@ body,
 }
 
 
-/*enter ,leaver*/
-
-
-/*route transition 1*/
-
+/* 套路1： 左侧和右侧文字和图标优雅隐形 */
 .cover-enter ._cover-top,
 .cover-leave ._cover-top {
     opacity: 0;
 }
 
 
-/*route transition 2*/
-
+/* 套路1 ：标题  */
 .cover-enter ._cover-top .top-title,
 .cover-leave ._cover-top .top-title {
     opacity: 0;
     transform: translate3d(50%, 0, 0);
 }
 
-
-/*route transition 3*/
-
+/* 套路2： 身体入场 80% */
 .cover-enter ._cover-content {
     transform: translate3d(80%, 0, 0);
 }
 
+/* 套路2： 身体出场 100% */
 .cover-leave ._cover-content {
     transition: .25s all ease;
     transform: translate3d(100%, 0, 0);
 }
 
 
-/*
-    component- 开头的 是router-view最外层的组件元素
-*/
-
-[class*="component-"] {}
 
 
-/* 保证next page 能覆盖住 current page */
+/* 通过定义以下相对位置和绝对位置，可以让路由下一页切入时处于当前页的上方覆盖它 */
 
+/* 路由当前页 */
 ._full_inner {
     position: relative;
     height: 100%;
     z-index: 5;
 }
 
+/* 路由下一页 */
 ._full_router {
     position: absolute;
     z-index: 10;
@@ -322,9 +312,6 @@ body,
     opacity: 0;
     transform: translate3d(-50%, 0, 0);
 }
-
-
-/* components */
 
 
 /*top-handle.vue*/

@@ -1,12 +1,15 @@
 <template>
-    <!--对话框-->
+    <!--聊天界面 -->
     <div class="_full_router component-chat-dialogue">
         <div class="_full_inner">
+
+            <!-- 头部导航 -->
             <top-handle :back-text='"微信"' 
                         :cur-text='topModel.curText' 
                         :next-path='topModel.nextPath' 
                         :next-icon='topModel.nextIcon'>
 
+                <!-- 使用插槽 ： 标题 -->
                 <p class="_effect" slot='center' :class="{'_effect--50':decline}">
                     <span class="top-title__text _ellipsis" v-text='topModel.curText'></span>
                     <span class="top-title__num parentheses" v-text="chat_member.length" v-show="dialogue_type==='group'"></span>
@@ -15,7 +18,10 @@
                 
             </top-handle>
 
+            <!-- 身体区域 -->
             <div class="_cover-content _effect" :class="{'_effect--30':decline}">
+            
+                <!-- 聊天内容 -->
                 <section class="dialogue-section">
                     <div class="dialogue-section-inner">
                         <div class="dialogue-item dialogue-item--others">
@@ -26,11 +32,14 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- 发送 (语音、表情、文字) 组件 -->
                 <footer class="dialogue-footer">
                     <component :is='dialogue_bar_type'></component>
                 </footer>
             </div>
         </div>
+
         <!-- router -->
         <router-view transition="cover"></router-view>
     </div>

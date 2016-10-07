@@ -1,19 +1,12 @@
 <template>
     <div class="_cover-top">
-        <!-- left -->
+        <!-- 返回 -->
         <div class="top-back">
             <div class="_ellipsis iconfont icon-return-arrow" v-link="backPath" v-text="backText">
             </div>
         </div>
-        <!-- right -->
-        <div class="top-other">
-            <slot name="right">
-                <div class="_align-right" v-link="nextPath">
-                    <span class="iconfont" :class="nextIcon"></span>
-                </div>
-            </slot>
-        </div>
-        <!-- center -->
+
+         <!-- 标题插槽 -->
         <div class="top-title _effect" :class="{'_effect--50':decline}">
             <slot name="center">
                 <p>
@@ -21,6 +14,16 @@
                 </p>
             </slot>
         </div>
+
+        <!-- 右插槽 -->
+        <div class="top-other">
+            <slot name="right">
+                <div class="_align-right" v-link="nextPath">
+                    <span class="iconfont" :class="nextIcon"></span>
+                </div>
+            </slot>
+        </div>
+       
     </div>
 </template>
 

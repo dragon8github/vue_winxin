@@ -9,40 +9,44 @@
         <ul class="wechat-list">
             <li class="item _line-fine" v-for="item in wechat_list" transition="chat-item">
                 
+                <!-- 
+                     通过 v-touch:tap 事件设置当前聊天对象并且路由跳转到聊天页面,
+                     正常而言是以id作为参数的,但作者偷懒设计为索引代替id
+                 -->
                 <div class="info" 
                     :class="{'current':currentIndex==$index}" 
                     @touchstart="info_touchstart($index)" 
-                    v-touch:tap="info_tap($index)" 
+                    v-touch:tap="info_tap($index)"  
                     v-touch:swipeleft="info_swipeleft($index)" 
                     v-touch-options:swipe="{ direction: 'horizontal' }">
 
-                    <!-- 头像 -->
-                    <div class="ico-box">
-                        <i :class="item.chatConfigModel | f_news 'nclass'" 
-                            v-text="item.chatBaseModel | f_news 'ntext'" 
-                            v-show="item.chatBaseModel | f_news 'nshow'">
-                        </i>
-                        <div class="ico">
-                            <img :src="item.base.iconSrc" alt="pic">
+                        <!-- 头像 -->
+                        <div class="ico-box">
+                            <i :class="item.chatConfigModel | f_news 'nclass'" 
+                                v-text="item.chatBaseModel | f_news 'ntext'" 
+                                v-show="item.chatBaseModel | f_news 'nshow'">
+                            </i>
+                            <div class="ico">
+                                <img :src="item.base.iconSrc" alt="pic">
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- 详情 -->
-                    <div class="desc">
+                        <!-- 详情 -->
+                        <div class="desc">
 
-                        <!-- 时间 -->
-                        <div class="desc-time" v-text="item.chatBaseModel.endTimeStr | fmtDate 'hh:ss'"></div>
+                            <!-- 时间 -->
+                            <div class="desc-time" v-text="item.chatBaseModel.endTimeStr | fmtDate 'hh:ss'"></div>
 
-                        <!-- 标题:好友名、微信群名 -->
-                        <div class="desc-title" v-text="item.base.name"></div>
+                            <!-- 标题:好友名、微信群名 -->
+                            <div class="desc-title" v-text="item.base.name"></div>
 
-                        <!-- 短信内容 -->
-                        <div class="desc-message">
-                            <div class="desc-mute iconfont icon-mute" :title="item.chatConfigModel.newsMute | json" v-show="item.chatConfigModel.newsMute"></div>
-                            <span :title="item.base.type" v-show="item.base.type==='friends'" v-text="item.chatBaseModel.endChatAuth+':'"></span>
-                            <span v-text="item.chatBaseModel.endChatTxt"></span>
-                        </div>                        
-                    </div>
+                            <!-- 短信内容 -->
+                            <div class="desc-message">
+                                <div class="desc-mute iconfont icon-mute" :title="item.chatConfigModel.newsMute | json" v-show="item.chatConfigModel.newsMute"></div>
+                                <span :title="item.base.type" v-show="item.base.type==='friends'" v-text="item.chatBaseModel.endChatAuth+':'"></span>
+                                <span v-text="item.chatBaseModel.endChatTxt"></span>
+                            </div>                        
+                        </div>
                 </div>
 
                 <!-- 左滑菜单 -->
@@ -61,9 +65,8 @@
 
 <script>
 
-import { wechat_list } from 'getters'
 import searchBar from 'components/search-bar.vue'
-
+import { wechat_list } from 'getters'
 import {
     get_menu_wechat_list,
     set_menu_active,
@@ -71,7 +74,7 @@ import {
     set_chat_count,
     set_news_state,
     delete_news
-} from '../vuex/actions'
+} from 'actions'
 
 
 
@@ -112,16 +115,20 @@ export default {
         info_touchstart(_index) {
             this.currentIndex = -1
         },
+        // 好友列表点击事件
         info_tap(_index) {
             var index = _index;
             if (index >= 0 && !this.isTouchSwipe) {
+                // 设置当前聊天好友的索引
                 this.set_chat(this.wechat_list[index])
+                // 跳转到聊天界面
                 this.$router.go({
                     path: "/chat/dialogue"
                 })
             }
             this.isTouchSwipe = false
         },
+        // 好友左滑事件
         info_swipeleft(_index) {
             event.stopPropagation()
             if (!this.isTouchSwipe) {
@@ -131,10 +138,9 @@ export default {
                 this.isTouchSwipe = false
             }
         },
-        computed_unRead_count () {
-            //计算未读数量
+        // 计算未读数量
+        computed_unRead_count () {            
             let sum = 0;
-            console.log(this.wechat_list)
             this.wechat_list.forEach(({chatBaseModel, chatConfigModel }, index) => {
                 if (!chatConfigModel.newsMute) {
                     let count = chatBaseModel.newsUnreadCount
@@ -143,20 +149,20 @@ export default {
             })
             this.set_chat_count(sum)
         },
+        //改变已读未读状态并回调计算未读总和
         increase_newsState(index, val) {
-            this.isTouchSwipe = false;
-            //改变已读未读状态并回调计算未读总和
+            this.isTouchSwipe = false;            
             this.set_news_state(index, val, () => {
                 this.currentIndex = -1
                 this.computed_unRead_count()
             })
         },
+        // 删除信息
         delete_item(index) {
             this.delete_news(index, () => {
                 this.currentIndex = -1;
                 this.computed_unRead_count()
             })
-
         }
     },
     filters: {

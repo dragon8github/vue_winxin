@@ -41,7 +41,7 @@ export const get_menu_wechat_list = ({ dispatch }, fn) => {
     !!fn && fn()
 }
 
-
+// 设置当前聊天好友索引
 export const set_chat = ({ dispatch }, model) => {
     dispatch('CHAT', model)
 }

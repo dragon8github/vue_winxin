@@ -14,7 +14,7 @@ import filters from './filters'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
-Vue.use(VueTouch)
+Vue.use(VueTouch) // 可以支持v-touch:swipeleft 和 v-touch:tap 等事件
 Vue.use(VueAnimatedList)
 
 
