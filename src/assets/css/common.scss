@@ -200,10 +200,12 @@ body,
 
 
 
-/* 这里我不明白为什么注释掉opacity就会跳转不动 */
+/* 
+  这里我不明白为什么注释掉opacity就会跳转不动
+ */
 .cover-transition {
     opacity: 1;
-    transition: .35s all ease;
+    transition: 5s all ease;
 }
 
 .cover-enter,
@@ -225,12 +227,12 @@ body,
     color: #ffffff;
     user-select: none;
     -webkit-user-select: none;
-    transition: .22s all ease;
+    transition: 5s all ease;
 }
 
 /* 标题默认样式、动画准备  */
 ._cover-top .top-title {
-    transition: .3s all ease;
+    transition: 5s all ease;
 }
 
 /* 身体默认样式、动画准备  */
@@ -240,12 +242,12 @@ body,
     height: 100%;
     overflow: hidden;
     z-index: 1;
-    transition: .3s all ease-in-out; 
+    transition: .35s all ease-in-out; 
     opacity: 1;
     transform: translate3d(0%, 0, 0);
     height: calc(100% - 45px);
     background-color: #efeff4;
-    box-shadow: 0px 0 41px rgba(0, 0, 0, .1);
+    box-shadow: 0px 0 41px rgba(0, 0, 0, .1); 
 }
 
 
@@ -266,11 +268,10 @@ body,
 /* 套路2： 身体入场 80% */
 .cover-enter ._cover-content {
     transform: translate3d(80%, 0, 0);
-}
+}   
 
 /* 套路2： 身体出场 100% */
 .cover-leave ._cover-content {
-    transition: .25s all ease;
     transform: translate3d(100%, 0, 0);
 }
 
@@ -305,7 +306,7 @@ body,
 
 ._effect {
     opacity: 1;
-    transition: .3s all ease;
+    transition: 5s all ease;
 }
 
 ._effect--30 {

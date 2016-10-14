@@ -1,9 +1,9 @@
 <template>
     <div class="_cover-top">
 
-        <!-- 右侧 “+” 图标按钮 -->
+        <!-- 右侧图标 -->
         <div class="other">
-            <!-- 如果当前页面是/chat，则显示 + 图标按钮    -->
+            <!-- 如果当前页面是/chat，则显示 + 图标按钮，点击的时候显示气泡列表    -->
             <span class="iconfont icon-tips-jia" v-show="$route.path==='/chat'" v-touch:tap="tap">
                 <!-- 气泡对话框 css值得一学 -->
                 <div class="tips-masker" v-show="tips_isOpen"></div>

@@ -16,7 +16,7 @@
         </section>
 
 
-        <!-- 头部是不变的，通过组件components/index-nav.vue + Vuex 来维护  -->
+        <!-- 底部是不变的，通过组件components/index-nav.vue + Vuex 来维护  -->
         <footer class="app-footer _line-fine" style="display:none" v-show="appload">
             <div class="_effect " :class="{'_effect--50':decline}">
                 <index-nav></index-nav>

@@ -6,14 +6,6 @@
             </div>
         </div>
 
-         <!-- 标题插槽 -->
-        <div class="top-title _effect" :class="{'_effect--50':decline}">
-            <slot name="center">
-                <p>
-                    <span v-text='curText'></span>
-                </p>
-            </slot>
-        </div>
 
         <!-- 右插槽 -->
         <div class="top-other">
@@ -23,7 +15,16 @@
                 </div>
             </slot>
         </div>
-       
+
+        
+         <!-- 标题插槽 -->
+        <div class="top-title _effect" :class="{'_effect--50':decline}">
+            <slot name="center">
+                <p>
+                    <span v-text='curText'></span>
+                </p>
+            </slot>
+        </div>
     </div>
 </template>
 

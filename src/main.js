@@ -31,6 +31,10 @@ const router = new VueRouter({
 routerMap(router)
 
 // 主要是把 vue-router 的狀態放進 vuex 的 state 中,這樣就可以透過改變 state 來進行路由的一些操作
+// 以下3个可以从vuex取得并使用
+// store.state.route.path   // current path (string)
+// store.state.route.params // current params (object)
+// store.state.route.query  // current query (object)
 sync(store, router)
 
 // 过滤 Vue 暂时不知道有什么用
